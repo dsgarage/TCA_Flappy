@@ -6,7 +6,7 @@ public class GameLogic : MonoBehaviour
 {
     public enum GameState
     {
-        Title,
+        Title = 0,
         Play,
         GameOver
     }
@@ -81,6 +81,16 @@ public class GameLogic : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
         
+    }
+
+    public void SetGameState(GameState gamestate)
+    {
+        _gameState = gamestate;
+    }
+
+    public void SetGameState(int gamestateNo)
+    {
+        _gameState = (GameState)Enum.ToObject(typeof(GameState), gamestateNo);
     }
 
 
