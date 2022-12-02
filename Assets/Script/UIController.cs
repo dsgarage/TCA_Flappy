@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,16 @@ public class UIController : MonoBehaviour,IGameState
     [SerializeField] private Transform score;
     [SerializeField] private Transform result;
 
+    private void Start()
+    {
+        Init();
+    }
+
     public void Init()
     {
-        
+        title.gameObject.SetActive(false);
+        score.gameObject.SetActive(false);
+        result.gameObject.SetActive(false);
     }
 
     public void TitleState()

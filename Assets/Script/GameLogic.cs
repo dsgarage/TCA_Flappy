@@ -33,6 +33,7 @@ public class GameLogic : MonoBehaviour
             if (VARIABLE.GetType() == typeof(UIController))
             {
                 _uiController = VARIABLE.ConvertTo<UIController>();
+                break;
             }
         }
     }
@@ -48,7 +49,11 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _gameState = GameState.Play;
 
+        }
         
         switch (_gameState)
         {
@@ -63,6 +68,8 @@ public class GameLogic : MonoBehaviour
                 
                 break;
             case GameState.Play:
+                _uiController.PlayState();
+
                 if (_gameState != GameState.Play)
                 {
                     restart = true;
