@@ -4,6 +4,11 @@ using UnityEngine;
 public class Jump : MonoBehaviour,IGameState
 {
     [SerializeField] private bool stay;
+    public bool Stay
+    {
+        get { return stay; }
+    }
+    
     [SerializeField] private bool gameOver = false;
     private bool _isJumpRequest;
     public float power = 2;
@@ -79,4 +84,6 @@ public class Jump : MonoBehaviour,IGameState
             _rigidbody2D.velocity = Vector3.up * power;
         }
     }
+
+
 }
