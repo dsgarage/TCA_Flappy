@@ -58,7 +58,7 @@ public class Jump : MonoBehaviour,IGameState
 
     public void TitleState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void PlayState()

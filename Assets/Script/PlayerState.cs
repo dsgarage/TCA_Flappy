@@ -12,10 +12,15 @@ public class PlayerState : MonoBehaviour,IGameState
     public void TitleState() { Init(); }
     public void PlayState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void GameOverState() { }
+
+    public bool GetState()
+    {
+        return dead;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameLogic : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameLogic : MonoBehaviour
     
     [SerializeField] private PlayerState _playerState;
     [SerializeField] private GameState _gameState = GameState.Title;
+    [SerializeField] private bool restart = false;
 
     private IGameState[] _iGameState;
 
@@ -43,15 +45,37 @@ public class GameLogic : MonoBehaviour
             case GameState.Title:
                 //鳥を出しっぱなしで落ちないようにする
                 //タイトルUIを出す
+
+                foreach(IGameState gs in _iGameState ) 
+                { 
+                    gs.TitleState(); 
+                }
                 
                 break;
             case GameState.Play:
+                if (_gameState != GameState.Play)
+                {
+                    restart = true;
+                }
                 //最初の状態は、Rigidbodyがきかないように
                 //最初にタップしたところからボードがでてゲームスタート
+                if (restart)
+                {
+                    foreach(IGameState gs in _iGameState ) 
+                    { 
+                        gs.PlayState(); 
+                    }
+
+                    restart = false;
+                }
                 break;
             case GameState.GameOver:
                 //リザルト画面を出す
                 //GameState .Playに戻す
+                foreach(IGameState gs in _iGameState ) 
+                { 
+                    gs.GameOverState(); 
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

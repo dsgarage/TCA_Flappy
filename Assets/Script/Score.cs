@@ -24,7 +24,7 @@ public class Score : MonoBehaviour,IGameState
 
     public void GameOverState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void Awake()
