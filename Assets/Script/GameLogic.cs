@@ -13,6 +13,7 @@ public class GameLogic : MonoBehaviour
     
     [SerializeField] private PlayerState _playerState;
     [SerializeField] private GameState _gameState = GameState.Title;
+    [SerializeField] private UIController _uiController;
     [SerializeField] private bool restart = false;
 
     private IGameState[] _iGameState;
@@ -26,6 +27,14 @@ public class GameLogic : MonoBehaviour
     {
         _iGameState = GameObjectExtensions.FindObjectsOfInterface<IGameState>();
         Debug.Log("IGameState:" + _iGameState.Length);
+
+        foreach (var VARIABLE in _iGameState)
+        {
+            if (VARIABLE.GetType() == typeof(UIController))
+            {
+                _uiController = VARIABLE.ConvertTo<UIController>();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -39,6 +48,7 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         
         switch (_gameState)
         {
@@ -92,6 +102,7 @@ public class GameLogic : MonoBehaviour
     {
         _gameState = (GameState)Enum.ToObject(typeof(GameState), gamestateNo);
     }
+
 
 
 }
