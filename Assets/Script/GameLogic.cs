@@ -14,6 +14,7 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private PlayerState _playerState;
     [SerializeField] private GameState _gameState = GameState.Title;
     [SerializeField] private UIController _uiController;
+    [SerializeField] private Jump _jump;
     [SerializeField] private bool restart = false;
 
     private IGameState[] _iGameState;
@@ -34,6 +35,14 @@ public class GameLogic : MonoBehaviour
             {
                 _uiController = VARIABLE.ConvertTo<UIController>();
                 break;
+            }
+        }
+
+        foreach (var VARIABLE in _iGameState)
+        {
+            if (VARIABLE.GetType() == typeof(Jump))
+            {
+                _jump = VARIABLE.ConvertTo<Jump>();
             }
         }
     }
@@ -69,6 +78,7 @@ public class GameLogic : MonoBehaviour
                 break;
             case GameState.Play:
                 _uiController.PlayState();
+                _jump.Init();
 
                 if (_gameState != GameState.Play)
                 {
